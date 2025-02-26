@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "Setup.html",
+    "href": "Setup.html",
+    "title": "Setup",
+    "section": "",
+    "text": "#Setup\nIn the following pages we will explore how to setup a functioning workflow to integrate SPARQL into a Rstudio working environment. Using Markdown and Quarto, the SPARQL queries can directly be integrated into the Writing and Analyzing Process. This gives us the possibility to utilize both Python and R."
+  },
+  {
+    "objectID": "Setup.html#connect-github-and-rstudio",
+    "href": "Setup.html#connect-github-and-rstudio",
+    "title": "Setup",
+    "section": "1. Connect Github and Rstudio",
+    "text": "1. Connect Github and Rstudio\n\nInstall git on the local computer and connect your account.\nSetup a New / Existing Repository for the project in Github.\nUnder “Code” copy the URL for the repository on github.com .\nIn Rstudio go to File -&gt; New Project -&gt; Version Control -&gt; Git .\nPaste the URL of the Repository and accept the name of the repositorium and create a tmp folder.\n\nTo sync with Github: first stage, then commit, last push - Safe your Changes to your documents. - Click the Git Tab in the oben right window in Rstudio (normally Environment). - Mark Staged for all relevant files. - Click Commit and write an explanation. - Click Push\nFor extensive Documentation on this workflow view: [Happy Git with R] (https://happygitwithr.com/rstudio-git-github.html)"
+  },
+  {
+    "objectID": "Setup.html#access-sparql-via-rstudio",
+    "href": "Setup.html#access-sparql-via-rstudio",
+    "title": "Setup",
+    "section": "2. Access SPARQL via Rstudio",
+    "text": "2. Access SPARQL via Rstudio\nTo access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. How to setup executable SPARQL code in Rstudio."
+  },
+  {
+    "objectID": "Setup.html#render-quarto-documents-via-github",
+    "href": "Setup.html#render-quarto-documents-via-github",
+    "title": "Setup",
+    "section": "3. Render quarto documents via Github",
+    "text": "3. Render quarto documents via Github\ntodo"
+  },
+  {
+    "objectID": "Introduction-SPARQLchunks.html",
+    "href": "Introduction-SPARQLchunks.html",
+    "title": "Introduction-SPARQLchunks",
+    "section": "",
+    "text": "#Introduction to SPARQL using the SPARQLchunks package\nThe SPARQLchunks package (view setup here) allows the query of SPARQL endpoints from R, R Markdown and Quarto environments. Accessed data can both be shown as lists and and stored in data frames.\nTo ensure proper workability of the package, following content needs to be included in the R Markdown setup chunk: knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)\n##Access SPARQL via a SPARQL chunk options:\nTo access SPARQL via the SPARQLchunks package we first need to create a sparql code block. In the first line several things can be defined: - output.var=“name”: name of the data frame in which data should be stored. - endpoint=“url.com”: url of the endpoint that is utilized for the query. - the SPARQL code is usable in other SPARQL access points.\n\nPREFIX dbr: &lt;http://dbpedia.org/resource/&gt; #Definition of the value dbr: as a prefix!\nPREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;\nselect ?s\nwhere {\ndbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.\n?s a dbo:Person\n}\nLIMIT 10\n\nhttps://dbpedia.org/sparql?query=PREFIX%20dbr%3A%20%3Chttp%3A%2F%2Fdbpedia.org%2Fresource%2F%3E%20%23Definition%20of%20the%20value%20dbr%3A%20as%20a%20prefix%21%0APREFIX%20dbo%3A%20%3Chttp%3A%2F%2Fdbpedia.org%2Fontology%2F%3E%0Aselect%20%3Fs%0Awhere%20%7B%0Adbr%3AList_of_archaeologists%20dbo%3AwikiPageWikiLink%20%3Fs.%0A%3Fs%20a%20dbo%3APerson%0A%7D%0ALIMIT%2010\n\n\n##Access SPARQL in R code:\nIt is furthermore possible to embed SPARQL queries in R code using the package. This can therefore be integrated into a workflow that accesses different databases before an analysis. By defining the value of Variables with the endpoint url or the SPARQL query the command sparql2df allows us to convert a SPARQL query into an instantly usable data frame. To cross-reference this code with a different program, the content of the query variable and the endpoint have to be extracted manually.\n\nlibrary(SPARQLchunks)\nendpoint &lt;- \"https://dbpedia.org/sparql\"\nquery &lt;- \"\nPREFIX dbr: &lt;http://dbpedia.org/resource/&gt; #Definition of the value dbr: as a prefix!\nPREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;\nselect ?s\nwhere {\ndbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.\n?s a dbo:Person\n}\nLIMIT 10\n\"\n\nresult_df &lt;- sparql2df(endpoint, query)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Archaeologists - humanitées numerique - Wiki",
+    "section": "",
+    "text": "This wiki is created to document and shape my working process for the séminaire Humanitées numerique in the Printemps semestre at the University of Neuchâtel. The topic is going to be an analysis of data on the semantic web about Archaeologists. Around that, I will document my general workflows, data exploration and at some later point probably also data analysis.\n\n\n\nSetup – How to setup Github, Rstudio and SPARQL\n\nIntroduction to SPARQLchunks – About the used R package"
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "Archaeologists - humanitées numerique - Wiki",
+    "section": "",
+    "text": "Setup – How to setup Github, Rstudio and SPARQL\n\nIntroduction to SPARQLchunks – About the used R package"
+  },
+  {
+    "objectID": "Setup-SPARQL.html",
+    "href": "Setup-SPARQL.html",
+    "title": "Setup-SPARQL",
+    "section": "",
+    "text": "To be able to do SPARQL queries in Markdown and Quarto documents we will be using the R package SPARQLchunks. This enables allows us to include SPARQL queries into the writing flow when using Markdown or Quarto and at the same time to instantly view, analyze and compare the Data using R.\n\n\nTo install the package SPARQLchunks, we need to install and load the package remotes. Then it can be used to install SPARQLchunks via Github.\n\n#install.packages(\"remotes\")\n#library(remotes)\n#remotes::install_github(\"aourednik/SPARQLchunks\", build_vignettes = TRUE)\n\nAfterwards we need to clarify in the definition part of our R setup that we will be using SPARQLchunks as the standard tool to execute SPARQL queries:\n\nknitr::knit_engines$set(sparql =SPARQLchunks::eng_sparql) #set the package SPARQLchunks as default application for SPARQL\n\nFinally we can load in the Package and start working with the SPARQL queries.\n\nlibrary(SPARQLchunks)\n\nRun `knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)` in your Rmd setup chunk to be able to execute SPARQL chunks.\n\n\nContinue to the next part: Introduction to SPARQL using the SPARQLchunks Package"
+  },
+  {
+    "objectID": "Setup-SPARQL.html#install-the-package-sparqlchunks",
+    "href": "Setup-SPARQL.html#install-the-package-sparqlchunks",
+    "title": "Setup-SPARQL",
+    "section": "",
+    "text": "To install the package SPARQLchunks, we need to install and load the package remotes. Then it can be used to install SPARQLchunks via Github.\n\n#install.packages(\"remotes\")\n#library(remotes)\n#remotes::install_github(\"aourednik/SPARQLchunks\", build_vignettes = TRUE)\n\nAfterwards we need to clarify in the definition part of our R setup that we will be using SPARQLchunks as the standard tool to execute SPARQL queries:\n\nknitr::knit_engines$set(sparql =SPARQLchunks::eng_sparql) #set the package SPARQLchunks as default application for SPARQL\n\nFinally we can load in the Package and start working with the SPARQL queries.\n\nlibrary(SPARQLchunks)\n\nRun `knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)` in your Rmd setup chunk to be able to execute SPARQL chunks.\n\n\nContinue to the next part: Introduction to SPARQL using the SPARQLchunks Package"
+  }
+]
