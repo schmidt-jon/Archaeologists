@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs/  # Render output to the 'docs/' folder for GitHub Pages
+  output-dir: ../docs  # Render output to the 'docs' folder for GitHub Pages
 
 website:
   title: "Archaeologists - humanitées numeriques"  # Title of your wiki
