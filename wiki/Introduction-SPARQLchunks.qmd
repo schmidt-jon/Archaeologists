@@ -19,11 +19,13 @@ To access SPARQL via the SPARQLchunks package we first need to create a sparql c
 - output.var="name": name of the data frame in which data should be stored.
 - endpoint="url.com": url of the endpoint that is utilized for the query.
 - the SPARQL code is usable in other SPARQL access points. 
-```{sparql output.var="result_df", endpoint="https://example.com/sparql"}
-PREFIX ex: <http://example.com/schema/> #Definition of the value ex: as a prefix!
-SELECT ?subject ?predicate ?object
-WHERE {
-  ?subject ?predicate ?object.
+```{sparql output.var="result1_df", endpoint="https://dbpedia.org/sparql"}
+PREFIX dbr: <http://dbpedia.org/resource/> #Definition of the value dbr: as a prefix!
+PREFIX dbo: <http://dbpedia.org/ontology/>
+select ?s
+where {
+dbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.
+?s a dbo:Person
 }
 LIMIT 10
 ```
@@ -32,14 +34,16 @@ LIMIT 10
 
 It is furthermore possible to embed SPARQL queries in R code using the package. This can therefore be integrated into a workflow that accesses different databases before an analysis. By defining the value of Variables with the endpoint url or the SPARQL query the command sparql2df allows us to convert a SPARQL query into an instantly usable data frame. To cross-reference this code with a different program, the content of the query variable and the endpoint have to be extracted manually.
 
-```{r}
+```{r eval=FALSE}
 library(SPARQLchunks)
-endpoint <- "https://example.com/sparql"
+endpoint <- "https://dbpedia.org/sparql"
 query <- "
-PREFIX ex: <http://example.com/schema/>
-SELECT ?subject ?predicate ?object
-WHERE {
-  ?subject ?predicate ?object.
+PREFIX dbr: <http://dbpedia.org/resource/> #Definition of the value dbr: as a prefix!
+PREFIX dbo: <http://dbpedia.org/ontology/>
+select ?s
+where {
+dbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.
+?s a dbo:Person
 }
 LIMIT 10
 "
