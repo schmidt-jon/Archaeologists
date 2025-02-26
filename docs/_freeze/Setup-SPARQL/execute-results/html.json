@@ -1,0 +1,15 @@
+{
+  "hash": "6b305f1843843eff4260a0ac5f65d57f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Setup-SPARQL\"\nformat: html\nauthor: \"Jonathan Schmidt\"\ndate: \"2025-02-26\"\n---\n\n\n\n\n# Setup SPARQL in Markdown/Quarto via the R package SPARQLchunks\n\nTo be able to do SPARQL queries in Markdown and Quarto documents we will be using the R package SPARQLchunks. This enables allows us to include SPARQL queries into the writing flow when using Markdown or Quarto and at the same time to instantly view, analyze and compare the Data using R.\n\n## Install the Package SPARQLchunks\n\nTo install the package SPARQLchunks, we need to install and load the package **remotes**. Then it can be used to install SPARQLchunks via Github.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#install.packages(\"remotes\")\n#library(remotes)\n#remotes::install_github(\"aourednik/SPARQLchunks\", build_vignettes = TRUE)\n```\n:::\n\n\n\n\nAfterwards we need to clarify in the definition part of our R setup that we will be using SPARQLchunks as the standard tool to execute SPARQL queries:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nknitr::knit_engines$set(sparql =SPARQLchunks::eng_sparql) #set the package SPARQLchunks as default application for SPARQL\n```\n:::\n\n\n\n\nFinally we can load in the Package and start working with the SPARQL queries.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(SPARQLchunks)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nRun `knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)` in your Rmd setup chunk to be able to execute SPARQL chunks.\n```\n\n\n:::\n:::\n\n\n\n\nContinue to the next part: \n[Introduction to SPARQL using the SPARQLchunks Package](Introduction-SPARQLchunks.qmd)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

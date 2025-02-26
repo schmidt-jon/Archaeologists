@@ -1,0 +1,38 @@
+---
+title: "Setup"
+format: html
+author: "Jonathan Schmidt"
+date: "2025-02-25"
+---
+
+#Setup
+
+In the following pages we will explore how to setup a functioning workflow to integrate SPARQL into a Rstudio working environment. Using Markdown and Quarto, the SPARQL queries can directly be integrated into the Writing and Analyzing Process. This gives us the possibility to utilize both Python and R. 
+
+## 1. Connect Github and Rstudio
+
+- Install git on the local computer and connect your account.
+- Setup a New / Existing Repository for the project in Github.
+- Under "Code" copy the URL for the repository on github.com .
+- In Rstudio go to File -> New Project -> Version Control -> Git .
+- Paste the URL of the Repository and accept the name of the repositorium and create a tmp folder.
+
+To sync with Github:
+**first stage, then commit, last push**
+- Safe your Changes to your documents.
+- Click the Git Tab in the oben right window in Rstudio (normally Environment).
+- Mark *Staged* for all relevant files.
+- Click *Commit* and write an explanation.
+- Click *Push*
+
+
+For extensive Documentation on this workflow view: 
+[Happy Git with R] (https://happygitwithr.com/rstudio-git-github.html)
+
+## 2. Access SPARQL via Rstudio
+
+To access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. [How to setup executable SPARQL code in Rstudio.](Setup-SPARQL.qmd)
+
+## 3. Render quarto documents via Github
+
+todo
