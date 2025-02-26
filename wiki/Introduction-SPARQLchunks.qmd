@@ -1,0 +1,51 @@
+---
+title: "Introduction-SPARQLchunks"
+format: html
+---
+
+#Introduction to SPARQL using the SPARQLchunks package
+
+The SPARQLchunks package ([view setup here](Setup-SPARQL.qmd)) allows the query of SPARQL endpoints from R, R Markdown and Quarto environments. Accessed data can both be shown as lists and and stored in data frames.
+
+To ensure proper workability of the package, following content needs to be included in the R Markdown setup chunk:
+knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)
+```{r setup, include=FALSE}
+knitr::knit_engines$set(sparql =SPARQLchunks::eng_sparql) #set the package SPARQLchunks as default application for SPARQL
+```
+
+##Access SPARQL via a SPARQL chunk options:
+
+To access SPARQL via the SPARQLchunks package we first need to create a sparql code block. In the first line several things can be defined:
+- output.var="name": name of the data frame in which data should be stored.
+- endpoint="url.com": url of the endpoint that is utilized for the query.
+- the SPARQL code is usable in other SPARQL access points. 
+```{sparql output.var="result_df", endpoint="https://example.com/sparql"}
+PREFIX ex: <http://example.com/schema/> #Definition of the value ex: as a prefix!
+SELECT ?subject ?predicate ?object
+WHERE {
+  ?subject ?predicate ?object.
+}
+LIMIT 10
+```
+
+##Access SPARQL in R code:
+
+It is furthermore possible to embed SPARQL queries in R code using the package. This can therefore be integrated into a workflow that accesses different databases before an analysis. By defining the value of Variables with the endpoint url or the SPARQL query the command sparql2df allows us to convert a SPARQL query into an instantly usable data frame. To cross-reference this code with a different program, the content of the query variable and the endpoint have to be extracted manually.
+
+```{r}
+library(SPARQLchunks)
+endpoint <- "https://example.com/sparql"
+query <- "
+PREFIX ex: <http://example.com/schema/>
+SELECT ?subject ?predicate ?object
+WHERE {
+  ?subject ?predicate ?object.
+}
+LIMIT 10
+"
+
+result_df <- sparql2df(endpoint, query)
+```
+
+
+
