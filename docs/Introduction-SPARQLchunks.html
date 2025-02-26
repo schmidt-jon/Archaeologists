@@ -144,8 +144,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-sparql-using-the-sparqlchunks-package" id="toc-introduction-to-sparql-using-the-sparqlchunks-package" class="nav-link active" data-scroll-target="#introduction-to-sparql-using-the-sparqlchunks-package">Introduction to SPARQL using the SPARQLchunks package</a>
+  <ul class="collapse">
+  <li><a href="#access-sparql-via-a-sparql-chunk-options" id="toc-access-sparql-via-a-sparql-chunk-options" class="nav-link" data-scroll-target="#access-sparql-via-a-sparql-chunk-options">Access SPARQL via a SPARQL chunk options:</a></li>
+  <li><a href="#access-sparql-in-r-code" id="toc-access-sparql-in-r-code" class="nav-link" data-scroll-target="#access-sparql-in-r-code">Access SPARQL in R code:</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -169,10 +179,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>#Introduction to SPARQL using the SPARQLchunks package</p>
+<section id="introduction-to-sparql-using-the-sparqlchunks-package" class="level1">
+<h1>Introduction to SPARQL using the SPARQLchunks package</h1>
 <p>The SPARQLchunks package (<a href="./Setup-SPARQL.html">view setup here</a>) allows the query of SPARQL endpoints from R, R Markdown and Quarto environments. Accessed data can both be shown as lists and and stored in data frames.</p>
 <p>To ensure proper workability of the package, following content needs to be included in the R Markdown setup chunk: knitr::knit_engines$set(sparql = SPARQLchunks::eng_sparql)</p>
-<p>##Access SPARQL via a SPARQL chunk options:</p>
+<section id="access-sparql-via-a-sparql-chunk-options" class="level2">
+<h2 class="anchored" data-anchor-id="access-sparql-via-a-sparql-chunk-options">Access SPARQL via a SPARQL chunk options:</h2>
 <p>To access SPARQL via the SPARQLchunks package we first need to create a sparql code block. In the first line several things can be defined: - output.var=“name”: name of the data frame in which data should be stored. - endpoint=“url.com”: url of the endpoint that is utilized for the query. - the SPARQL code is usable in other SPARQL access points.</p>
 <div class="cell" data-output.var="result1_df" data-endpoint="https://dbpedia.org/sparql">
 <pre class="sparql cell-code"><code>PREFIX dbr: &lt;http://dbpedia.org/resource/&gt; #Definition of the value dbr: as a prefix!
@@ -187,7 +199,9 @@ LIMIT 10</code></pre>
 <pre><code>https://dbpedia.org/sparql?query=PREFIX%20dbr%3A%20%3Chttp%3A%2F%2Fdbpedia.org%2Fresource%2F%3E%20%23Definition%20of%20the%20value%20dbr%3A%20as%20a%20prefix%21%0APREFIX%20dbo%3A%20%3Chttp%3A%2F%2Fdbpedia.org%2Fontology%2F%3E%0Aselect%20%3Fs%0Awhere%20%7B%0Adbr%3AList_of_archaeologists%20dbo%3AwikiPageWikiLink%20%3Fs.%0A%3Fs%20a%20dbo%3APerson%0A%7D%0ALIMIT%2010</code></pre>
 </div>
 </div>
-<p>##Access SPARQL in R code:</p>
+</section>
+<section id="access-sparql-in-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="access-sparql-in-r-code">Access SPARQL in R code:</h2>
 <p>It is furthermore possible to embed SPARQL queries in R code using the package. This can therefore be integrated into a workflow that accesses different databases before an analysis. By defining the value of Variables with the endpoint url or the SPARQL query the command sparql2df allows us to convert a SPARQL query into an instantly usable data frame. To cross-reference this code with a different program, the content of the query variable and the endpoint have to be extracted manually.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SPARQLchunks)</span>
@@ -207,6 +221,8 @@ LIMIT 10</code></pre>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
