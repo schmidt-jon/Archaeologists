@@ -5,7 +5,7 @@ author: "Jonathan Schmidt"
 date: "2025-02-25"
 ---
 
-#Setup
+# Setup
 
 In the following pages we will explore how to setup a functioning workflow to integrate SPARQL into a Rstudio working environment. Using Markdown and Quarto, the SPARQL queries can directly be integrated into the Writing and Analyzing Process. This gives us the possibility to utilize both Python and R. 
 
@@ -31,7 +31,7 @@ For extensive Documentation on this workflow view:
 
 ## 2. Access SPARQL via Rstudio
 
-To access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. [How to setup executable SPARQL code in Rstudio.](Setup-SPARQL.qmd)
+To access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. [How to setup executable SPARQL code in Rstudio.](Setup-SPARQL.html)
 
 ## 3. Render quarto documents via Github
 

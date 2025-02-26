@@ -29,4 +29,4 @@ library(SPARQLchunks)
 ```
 
 Continue to the next part: 
-[Introduction to SPARQL using the SPARQLchunks Package](Introduction-SPARQLchunks.qmd)
+[Introduction to SPARQL using the SPARQLchunks Package](Introduction-SPARQLchunks.html)

@@ -15,6 +15,6 @@ This wiki is created to document and shape my working process for the séminaire
 
 
 ## Contents:
-- [Setup](Setup.qmd) – How to setup Github, Rstudio and SPARQL  
-- [Introduction to SPARQLchunks](Introduction-SPARQLchunks.qmd) – About the used R package  
+- [Setup](Setup.html) – How to setup Github, Rstudio and SPARQL  
+- [Introduction to SPARQLchunks](Introduction-SPARQLchunks.html) – About the used R package  
 
