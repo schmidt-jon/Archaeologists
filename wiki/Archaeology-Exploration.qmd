@@ -1,0 +1,54 @@
+---
+title: "Archaeology-Exploration"
+format: html
+---
+
+#The Beginning of the Exploration of the Data of Archaeologists
+
+```{r setup, include=FALSE}
+knitr::knit_engines$set(sparql =SPARQLchunks::eng_sparql) #set the package SPARQLchunks as default application for SPARQL
+```
+```{r, include=FALSE}
+library(SPARQLchunks)
+```
+
+##General exploration of the List of Archaeologists on Wikipedia via DBpedia:
+
+1. The number of Archaeologists in the LOA (List of Archaeologists)
+```{sparql output.var="number-LOA", endpoint="https://dbpedia.org/sparql", warning="FALSE"}
+PREFIX dbr: <http://dbpedia.org/resource/> #Definition of the value dbr: as a prefix!
+PREFIX dbo: <http://dbpedia.org/ontology/>
+select (count(*) as ?number)
+where {
+dbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.
+?s a dbo:Person
+}
+LIMIT 10
+```
+2. 15 examples of Archaeologists in the LOA
+```{sparql output.var="examples-LOA", endpoint="https://dbpedia.org/sparql", warning="FALSE"}
+select ?s
+where {
+dbr:List_of_archaeologists dbo:wikiPageWikiLink ?s.
+?s a dbo:Person
+}
+LIMIT 15
+```
+3. The highest most often available attributes of the List of Archaeologists:
+```{sparql output.var="attributes-LOA", endpoint="https://dbpedia.org/sparql", warning="FALSE"}
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+SELECT ?p1 (COUNT(*) as ?eff)
+WHERE { 
+dbr:List_of_astronomers ?p ?o1.
+?o1 a dbo:Person;
+    ?p1 ?o2.
+  }
+GROUP BY ?p1
+ORDER BY DESC(?eff)
+```
+In the Wikipedia List of Archaeologists a total of 'r number-LOA$number' Archaeologists is represented in the semantic web. Several attributes scraped of the Wikipedia infoboxes are available for many of the data points: What they were known for ('r attributes-LOA$p1=="http://dbpedia.org/ontology/knownFor"'), their Birth Place ('r attributes-LOA$p1=="http://dbpedia.org/ontology/birthPlace"'), awards ('r attributes-LOA$p1=="http://dbpedia.org/ontology/award"') and their academic discipline ('r attributes-LOA$p1=="http://dbpedia.org/ontology/academicDiscipline"').
+
+
+
+
