@@ -51,5 +51,7 @@ LIMIT 10
 result_df <- sparql2df(endpoint, query)
 ```
 
+## Connect to AllegroGraph server via SPARQLchunks
 
+When the setup of our AllegroGraph server has been successful and a new user to edit and write has been created, it is possible to access the server via the credentials of that user.
 

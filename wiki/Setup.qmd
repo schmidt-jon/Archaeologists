@@ -27,12 +27,23 @@ To sync with Github:
 
 
 For extensive Documentation on this workflow view: 
-[Happy Git with R] (https://happygitwithr.com/rstudio-git-github.html)
-
-## 2. Access SPARQL via Rstudio
-
-To access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. [How to setup executable SPARQL code in Rstudio.](Setup-SPARQL.html)
+[Happy Git with R](https://happygitwithr.com/rstudio-git-github.html)
 
 ## 3. Render quarto documents via Github
 
-todo
+For the used workflow to display quarto documents via Github(Pages) check here:
+[Quarto x GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
+
+## 4. Setup AllegroGraph
+
+A free infrastructure to host a data server is offered by [AllegroGraph](https://allegrograph.cloud/). Important to note is, that after 8 hours the server shuts off automatically. When it is then not activated for 5 days, the server will be deleted. This is why regular backups are recommended.
+When creating a new server, a personal link will be generated for each repositorium, that is needed to connect to SPARL queries. 
+- It is recommended to create a new user, apart from admin, to access the repositorium for queries.
+
+
+## 5. Access SPARQL via Rstudio
+
+To access SPARQL via Rstudio we will utilize the R Package SPARQLchunks. [How to setup executable SPARQL code in Rstudio.](Setup-SPARQL.html)
+
+
+
